@@ -142,6 +142,40 @@
         homeTheater.EndMovie();
     }
 
+    public void Flyweight()
+    {
+        var random = new Random();
+        var forest = new List<Tree>();
+
+        // Criando uma floresta com 1000 árvores de tipos compartilhados
+        for (int i = 0; i < 1000; i++)
+        {
+            // Gera posições aleatórias
+            int x = random.Next(0, 1000);
+            int y = random.Next(0, 1000);
+
+            // Seleciona um tipo de árvore aleatório (apenas 3 tipos existem)
+            string[] types = { "Pinheiro", "Carvalho", "Salgueiro" };
+            string type = types[random.Next(types.Length)];
+            
+            string color = type == "Pinheiro" ? "Verde" : "Marrom";
+            string texture = type == "Salgueiro" ? "Suave" : "Áspera";
+
+            // Obtém ou cria o tipo compartilhado
+            var treeType = TreeFactory.GetTreeType(type, color, texture);
+            
+            forest.Add(new Tree(x, y, treeType));
+        }
+
+        // Desenhando todas as árvores
+        foreach (var tree in forest)
+        {
+            tree.Draw();
+        }
+
+        Console.WriteLine($"\nTotal de árvores criadas: {forest.Count}");
+        Console.WriteLine($"Total de tipos de árvores na memória: {TreeFactory.GetTreeTypesCount()}");
+    }
     static void Main()
     {
         Program p = new Program();
@@ -150,6 +184,7 @@
         // p.Bridge();
         // p.Composite();
         // p.Decorator();
-        p.Facade();
+        // p.Facade();
+        p.Flyweight();
     }
 }
