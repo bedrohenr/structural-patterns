@@ -84,12 +84,38 @@
         // Exibindo toda a estrutura de menus
         mainMenu.Display();
     }
+
+    public void Decorator()
+    {
+        // Cenário 1: Notificação única via Email
+        INotification emailNotifier = new EmailDecorator(new BaseNotification());
+        emailNotifier.Send("Relatório diário disponível");
+        
+        Console.WriteLine("\n---\n");
+        
+        // Cenário 2: Combinação de Email e SMS
+        INotification emailSmsNotifier = new SMSDecorator(
+                                new EmailDecorator(
+                                new BaseNotification()));
+        emailSmsNotifier.Send("Alerta de segurança: login detectado");
+        
+        Console.WriteLine("\n---\n");
+        
+        // Cenário 3: Notificação completa (Email + SMS + Push)
+        INotification fullNotifier = new PushDecorator(
+                             new SMSDecorator(
+                             new EmailDecorator(
+                             new BaseNotification())));
+        fullNotifier.Send("Promoção especial: 50% de desconto!");
+
+    }
     static void Main()
     {
         Program p = new Program();
 
         // p.Adapter();
         // p.Bridge();
-        p.Composite();
+        // p.Composite();
+        p.Decorator();
     }
 }
