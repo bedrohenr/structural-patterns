@@ -116,6 +116,32 @@
                     new BaseNotification()));
         notifier.Send("Nova mensagem via WhatsApp e Email");
     }
+
+    public void Facade()
+    {
+        // Criando instâncias dos subsistemas
+        var dvd = new DvdPlayer();
+        var projector = new Projector();
+        var sound = new SoundSystem();
+        var lights = new Lights();
+
+        // Criando a fachada
+        var homeTheater = new HomeTheaterFacade(dvd, projector, sound, lights);
+
+        // Usando a interface simplificada
+        homeTheater.PlayMovie("O Poderoso Chefão");
+        
+        // Simulando tempo de filme...
+        Thread.Sleep(3000);
+        
+        homeTheater.EndMovie();
+
+        // Exemplo alternativo
+        homeTheater.PlayMovie("Interestelar");
+        Thread.Sleep(2000);
+        homeTheater.EndMovie();
+    }
+
     static void Main()
     {
         Program p = new Program();
@@ -123,6 +149,7 @@
         // p.Adapter();
         // p.Bridge();
         // p.Composite();
-        p.Decorator();
+        // p.Decorator();
+        p.Facade();
     }
 }
