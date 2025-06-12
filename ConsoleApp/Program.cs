@@ -176,6 +176,45 @@
         Console.WriteLine($"\nTotal de árvores criadas: {forest.Count}");
         Console.WriteLine($"Total de tipos de árvores na memória: {TreeFactory.GetTreeTypesCount()}");
     }
+
+    public void Proxy()
+    {
+        Console.WriteLine("--- Demonstração do Proxy Image ---\n");
+
+        // Criando proxies (as imagens reais ainda não são carregadas)
+        IImage image1 = new ProxyImage("foto1.jpg");
+        IImage image2 = new ProxyImage("foto2.jpg");
+        IImage image3 = new ProxyImage("foto3.jpg");
+
+        Console.WriteLine("\nAs imagens ainda não foram carregadas na memória\n");
+
+        // Menu interativo
+        while (true)
+        {
+            Console.WriteLine("Qual imagem deseja exibir? (1-3, 0 para sair)");
+            string input = Console.ReadLine();
+
+            if (input == "0") break;
+
+            switch (input)
+            {
+                case "1":
+                    image1.Display();
+                    break;
+                case "2":
+                    image2.Display();
+                    break;
+                case "3":
+                    image3.Display();
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida");
+                    break;
+            }
+        }
+
+        Console.WriteLine("\nPrograma encerrado");
+    }
     static void Main()
     {
         Program p = new Program();
@@ -185,6 +224,7 @@
         // p.Composite();
         // p.Decorator();
         // p.Facade();
-        p.Flyweight();
+        // p.Flyweight();
+        p.Proxy();
     }
 }
