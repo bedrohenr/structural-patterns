@@ -108,6 +108,13 @@
                              new BaseNotification())));
         fullNotifier.Send("Promoção especial: 50% de desconto!");
 
+        Console.WriteLine("\n---\n");
+
+        // Uso:
+        var notifier = new WhatsAppDecorator(
+                    new EmailDecorator(
+                    new BaseNotification()));
+        notifier.Send("Nova mensagem via WhatsApp e Email");
     }
     static void Main()
     {
