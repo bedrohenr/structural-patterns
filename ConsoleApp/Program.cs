@@ -24,10 +24,35 @@
             Console.WriteLine($"Leitura unificada: {sensor.ReadTemperature()}°C");
         }
     }
+
+    public void Bridge()
+    {
+        IColor vermelho = new RedColor();
+        IColor azul = new BlueColor();
+
+        // Criando diferentes combinações de formas e cores
+        Shape circuloVermelho = new Circle(vermelho);
+        Shape circuloAzul = new Circle(azul);
+        Shape quadradoVermelho = new Square(vermelho);
+        Shape quadradoAzul = new Square(azul);
+
+        // Usando as combinações
+        Console.WriteLine(circuloVermelho.Draw());
+        Console.WriteLine(circuloAzul.Draw());
+        Console.WriteLine(quadradoVermelho.Draw());
+        Console.WriteLine(quadradoAzul.Draw());
+
+        // Demonstração de extensibilidade
+        IColor novaCor = new GreenColor(); // Nova implementação
+        Shape novoQuadrado = new Square(novaCor);
+        Console.WriteLine(novoQuadrado.Draw());
+    }
+
     static void Main()
     {
         Program p = new Program();
 
-        p.Adapter();
+        // p.Adapter();
+        p.Bridge();
     }
 }
