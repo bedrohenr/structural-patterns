@@ -225,6 +225,6 @@
         // p.Decorator();
         // p.Facade();
         // p.Flyweight();
-        p.Proxy();
+        // p.Proxy();
     }
 }
